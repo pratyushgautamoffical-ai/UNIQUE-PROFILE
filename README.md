@@ -37,7 +37,7 @@ Welcome to my central showcase of full-stack web applications, interactive web t
 
 Looking for a high-quality web developer for your business or project? Let’s connect!
 
-- 📧 **Email:** [your-email@example.com](mailto:your-email@example.com)
+- 📧 **Email:** [your-email@example.com](pratyushgautamoffical@gmail.com)
 - 🌐 **Portfolio:** [yourportfolio.com](#)
 - 💼 **LinkedIn:** [Your LinkedIn Profile](#)
 

@@ -8,7 +8,7 @@
   </p>
 
   <!-- Status & Quick Contact Badges -->
-  [![Status](https://img.shields.io/badge/Status-Available_For_Freelance-00C853?style=for-the-badge)](#-contact--hire-me)
+  [![Status](https://img.shields.io/badge/Status-Available_For_Freelance-00C853?style=for-the-badge)](https://unique-profile.vercel.app)
   [![Email Me](https://img.shields.io/badge/Email-pratyushgautamoffical%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:pratyushgautamoffical@gmail.com)
   [![GitHub Profile](https://img.shields.io/badge/GitHub-pratyushgautamoffical--ai-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pratyushgautamoffical-ai)
 
@@ -86,19 +86,19 @@ I help startups, small businesses, and agencies transform ideas into modern soft
 * **Overview:** A ultra-responsive business web page designed for high conversion rates, speed, and seamless mobile support.
 * **Key Achievements:** Achieved 98 Mobile Speed Score on Lighthouse; implemented instant contact form.
 * **Stack:** `HTML5` · `CSS3` · `JavaScript` · `Tailwind CSS`
-* 🔗 **Links:** [Live Demo](#) | [Repository Source Code](#)
+* 🔗 **Links:** [Live Demo](https://unique-profile.vercel.app) | [Repository Source Code](https://github.com/pratyushgautamoffical-ai/UNIQUE-PROFILE)
 
 ### 2. 🛠️ Interactive Client Web Application
 * **Overview:** A modular client web interface built to manage live data display and interactive features smoothly.
 * **Key Achievements:** Reduced bundle size and integrated responsive UI components.
 * **Stack:** `JavaScript` · `React` · `Tailwind CSS`
-* 🔗 **Links:** [Live Demo](#) | [Repository Source Code](#)
+* 🔗 **Links:** [Live Demo](https://unique-profile.vercel.app) | [Repository Source Code](https://github.com/pratyushgautamoffical-ai/UNIQUE-PROFILE)
 
 ### 3. 📊 Performance & SEO Audit Utility
 * **Overview:** A web script designed to scan web pages, check speed bottlenecks, and report structural recommendations.
 * **Key Achievements:** Automated website health audits for client evaluation.
 * **Stack:** `Python` · `REST API`
-* 🔗 **Links:** [Live Demo](#) | [Repository Source Code](#)
+* 🔗 **Links:** [Live Demo](https://unique-profile.vercel.app) | [Repository Source Code](https://github.com/pratyushgautamoffical-ai/UNIQUE-PROFILE)
 
 ---
 
@@ -140,7 +140,7 @@ I follow a clean, structured workflow for every client project to ensure code qu
 Ready to start your project or upgrade your website performance? Let's discuss your requirements!
 
 - 📧 **Direct Email:** [pratyushgautamoffical@gmail.com](mailto:pratyushgautamoffical@gmail.com)
-- 🌐 **Portfolio Website:** [Your Portfolio URL Here](#)
+- 🌐 **Portfolio Website:** [unique-profile.vercel.app](https://unique-profile.vercel.app)
 - 💼 **GitHub Profile:** [@pratyushgautamoffical-ai](https://github.com/pratyushgautamoffical-ai)
 
 ---

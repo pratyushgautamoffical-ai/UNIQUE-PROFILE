@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pratyush Gautam | Senior Full-Stack Developer</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#hero" class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+        PG<span class="text-indigo-500">.dev</span>
+      </a>
+      
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-indigo-400 transition-colors">About</a>
+        <a href="#services" class="hover:text-indigo-400 transition-colors">Services</a>
+        <a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-indigo-400 transition-colors">Skills</a>
+        <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold transition-all shadow-lg shadow-indigo-500/25">
+          Hire Me
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-2xl text-slate-300 focus:outline-none">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col space-y-4">
+      <a href="#about" class="mobile-link text-slate-300 hover:text-indigo-400">About</a>
+      <a href="#services" class="mobile-link text-slate-300 hover:text-indigo-400">Services</a>
+      <a href="#projects" class="mobile-link text-slate-300 hover:text-indigo-400">Projects</a>
+      <a href="#skills" class="mobile-link text-slate-300 hover:text-indigo-400">Skills</a>
+      <a href="#contact" class="mobile-link text-indigo-400 font-semibold">Hire Me</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
+    <!-- Ambient Glow Effects -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center z-10 space-y-8">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold tracking-wide uppercase">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        Available for Freelance Projects
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-none">
+        Building High-Performance <br class="hidden sm:inline"/>
+        <span class="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">
+          Web Apps & Conversion Sites
+        </span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        I’m <strong class="text-white">Pratyush Gautam</strong>, a full-stack developer engineering lightning-fast web applications, modern interfaces, and scalable solutions for global clients.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold text-white transition-all shadow-xl shadow-indigo-600/30 hover:scale-105">
+          Explore Projects <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+        </a>
+        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-700 bg-slate-900/50 hover:bg-slate-800 font-semibold text-slate-200 transition-all hover:border-slate-600">
+          Book a Free Call
+        </a>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-slate-800/80">
+        <div>
+          <h3 class="text-3xl font-extrabold text-white">99+</h3>
+          <p class="text-xs text-slate-400">Lighthouse Score</p>
+        </div>
+        <div>
+          <h3 class="text-3xl font-extrabold text-white">100%</h3>
+          <p class="text-xs text-slate-400">Client Satisfaction</p>
+        </div>
+        <div>
+          <h3 class="text-3xl font-extrabold text-white">&lt;1s</h3>
+          <p class="text-xs text-slate-400">Avg. Load Speed</p>
+        </div>
+        <div>
+          <h3 class="text-3xl font-extrabold text-white">24/7</h3>
+          <p class="text-xs text-slate-400">Support & Delivery</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-24 px-6 bg-slate-900/40 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-xs uppercase font-bold text-indigo-400 tracking-widest">My Expertise</h2>
+        <h3 class="text-3xl sm:text-5xl font-bold text-white">High-Impact Services</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Service Card 1 -->
+        <div class="p-8 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-2">
+          <div class="w-14 h-14 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-3">Custom Web App Development</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Scalable, responsive web applications built with modern frontend frameworks, dynamic state management, and optimized backends.
+          </p>
+        </div>
+
+        <!-- Service Card 2 -->
+        <div class="p-8 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 transition-all duration-300 group hover:-translate-y-2">
+          <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-3">Landing Page Conversion</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            High-converting, mobile-first business landing pages crafted for ultra-fast load times, SEO ranking, and lead generation.
+          </p>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="p-8 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-pink-500/50 transition-all duration-300 group hover:-translate-y-2">
+          <div class="w-14 h-14 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 text-2xl mb-6 group-hover:bg-pink-600 group-hover:text-white transition-colors">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-3">Speed & SEO Optimization</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Re-architecting slow sites to achieve 90+ Lighthouse performance scores, clean code structures, and superior mobile responsiveness.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div>
+        <h2 class="text-xs uppercase font-bold text-indigo-400 tracking-widest mb-2">Portfolio</h2>
+        <h3 class="text-3xl sm:text-5xl font-bold text-white">Featured Case Studies</h3>
+      </div>
+      <p class="text-slate-400 text-sm max-w-md">Real-world solutions engineered for business performance, user experience, and conversion.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <!-- Project 1 -->
+      <div class="group rounded-3xl bg-slate-900 border border-slate-800 overflow-hidden hover:border-slate-700 transition-all">
+        <div class="p-8 space-y-4">
+          <div class="flex items-center justify-between text-xs font-semibold text-indigo-400">
+            <span>Client Project · SaaS Platform</span>
+            <span class="px-3 py-1 rounded-full bg-indigo-500/10">Next.js + Tailwind</span>
+          </div>
+          <h4 class="text-2xl font-bold text-white group-hover:text-indigo-300 transition-colors">Enterprise Analytics Dashboard</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Built an interactive real-time data dashboard with modular chart widgets and sub-second page transition speeds.
+          </p>
+          <div class="pt-4 flex items-center gap-4">
+            <a href="#" class="text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg transition-colors">
+              Live Preview <i class="fa-solid fa-external-link text-[10px] ml-1"></i>
+            </a>
+            <a href="#" class="text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+              Source Code <i class="fa-brands fa-github text-[12px] ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="group rounded-3xl bg-slate-900 border border-slate-800 overflow-hidden hover:border-slate-700 transition-all">
+        <div class="p-8 space-y-4">
+          <div class="flex items-center justify-between text-xs font-semibold text-purple-400">
+            <span>E-Commerce · High Speed</span>
+            <span class="px-3 py-1 rounded-full bg-purple-500/10">React + Web Vitals</span>
+          </div>
+          <h4 class="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">Digital Product Storefront</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Architected a seamless storefront achieving 99 Lighthouse performance, instant checkout navigation, and mobile responsiveness.
+          </p>
+          <div class="pt-4 flex items-center gap-4">
+            <a href="#" class="text-xs font-semibold text-white bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-lg transition-colors">
+              Live Preview <i class="fa-solid fa-external-link text-[10px] ml-1"></i>
+            </a>
+            <a href="#" class="text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+              Source Code <i class="fa-brands fa-github text-[12px] ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Stack -->
+  <section id="skills" class="py-20 px-6 bg-slate-900/30 border-y border-slate-800/60">
+    <div class="max-w-7xl mx-auto text-center space-y-12">
+      <h3 class="text-2xl font-bold text-white">Technologies & Tools</h3>
+      
+      <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+        <span class="skill-badge"><i class="fa-brands fa-html5 text-orange-500 mr-2"></i>HTML5</span>
+        <span class="skill-badge"><i class="fa-brands fa-css3-alt text-blue-500 mr-2"></i>CSS3</span>
+        <span class="skill-badge"><i class="fa-brands fa-js text-yellow-400 mr-2"></i>JavaScript</span>
+        <span class="skill-badge"><i class="fa-solid fa-wind text-cyan-400 mr-2"></i>Tailwind CSS</span>
+        <span class="skill-badge"><i class="fa-brands fa-react text-sky-400 mr-2"></i>React / Next.js</span>
+        <span class="skill-badge"><i class="fa-brands fa-python text-blue-400 mr-2"></i>Python</span>
+        <span class="skill-badge"><i class="fa-brands fa-git-alt text-orange-600 mr-2"></i>Git & GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 max-w-4xl mx-auto">
+    <div class="p-8 sm:p-12 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-2xl space-y-8">
+      <div class="text-center space-y-3">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white">Let’s Build Something Great</h2>
+        <p class="text-slate-400 text-sm">Have a project or redesign in mind? Send a message to discuss scope and timelines.</p>
+      </div>
+
+      <form id="contact-form" class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Your Name</label>
+            <input type="text" required placeholder="John Doe" class="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Your Email</label>
+            <input type="email" required placeholder="john@company.com" class="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Project Details</label>
+          <textarea rows="4" required placeholder="Describe your project, timeline, and goals..." class="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors text-sm"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-semibold text-white transition-all shadow-lg shadow-indigo-600/30">
+          Send Inquiry <i class="fa-solid fa-paper-plane ml-2 text-xs"></i>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-slate-800 text-center text-xs text-slate-500">
+    <p>© 2026 Pratyush Gautam. All rights reserved. Built with Tailwind CSS.</p>
+  </footer>
+
+  <!-- External Script File -->
+  <script src="script.js"></script>
+</body>
+</html>

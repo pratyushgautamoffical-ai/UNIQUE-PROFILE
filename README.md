@@ -1,5 +1,4 @@
 <div align="center">
-  
 <div align="center">
   
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com)
@@ -53,8 +52,7 @@ I specialize in building ultra-fast, modern web applications and tools that deli
 ## 📈 GitHub Activity & Metrics
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=pratyushgautamoffical-ai&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pratyushgautamoffical-ai&layout=compact&theme=tokyonight" alt="Top Languages" width="48%" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pratyushgautamoffical-ai&layout=compact&theme=tokyonight" alt="Top Languages" width="48%" />
 </div>
 
 ---

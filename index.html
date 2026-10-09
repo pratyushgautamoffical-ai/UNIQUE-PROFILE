@@ -38,6 +38,16 @@
             100% { transform: scale(1.2) translate(-50px, 50px); }
         }
 
+        /* Entrance Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
         /* Neon Glassmorphism */
         .glass-panel { 
             background: rgba(8, 12, 24, 0.88); 
@@ -66,7 +76,7 @@
         }
 
         .neon-glow-text {
-            text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+            text-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
         }
     </style>
 </head>
@@ -77,10 +87,10 @@
     <div class="orb orb-3"></div>
 
     <!-- Navigation Header -->
-    <header class="py-5 px-8 border-b border-cyan-500/20 glass-panel sticky top-0 z-50 flex justify-between items-center max-w-7xl mx-auto w-full mt-3 rounded-2xl">
+    <header class="py-5 px-8 border-b border-cyan-500/20 glass-panel sticky top-0 z-50 flex justify-between items-center max-w-7xl mx-auto w-full mt-3 rounded-2xl animate-fade-in">
         <a href="#" class="text-2xl font-heading font-extrabold tracking-wider text-white flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-cyan-400 animate-ping"></span>
-            PRATYUSH<span class="neon-gradient">.G</span>
+            PRATYUSH GAUTAM
         </a>
 
         <nav class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-300">
@@ -99,7 +109,7 @@
     <main class="max-w-7xl mx-auto px-6 py-12 w-full space-y-32">
         
         <!-- Hero Section -->
-        <section class="text-center max-w-4xl mx-auto space-y-6 pt-10">
+        <section class="text-center max-w-4xl mx-auto space-y-6 pt-10 animate-fade-in">
             <span class="text-xs uppercase tracking-widest text-cyan-400 font-bold border border-cyan-500/40 px-4.5 py-2 rounded-full bg-cyan-500/10 inline-flex items-center gap-2 shadow-lg shadow-cyan-500/10">
                 <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span> Lead Full-Stack Software Engineer & Developer
             </span>
@@ -149,7 +159,7 @@
                 <span class="text-xs uppercase tracking-widest text-cyan-400 font-bold">Architectural Philosophy</span>
                 <h2 class="text-2xl md:text-3xl font-heading font-extrabold text-white">Precision Code & Immersive Neon Design</h2>
                 <p class="text-xs text-slate-300 leading-relaxed font-light">
-                    As a software engineer, my core objective under <strong class="text-cyan-400 font-semibold">Pratyush Gautam (.dev)</strong> is bridging robust backend reliability with gorgeous, futuristic UI layouts. Every system is built from scratch with asynchronous client queries, real-time database bindings, and strict security compliance.
+                    As a software engineer, my core objective under <strong class="text-cyan-400 font-semibold">Pratyush Gautam</strong> is bridging robust backend reliability with gorgeous, futuristic UI layouts. Every system is built from scratch with asynchronous client queries, real-time database bindings, and strict security compliance.
                 </p>
             </div>
             <div class="lg:col-span-6 grid grid-cols-2 gap-4">
@@ -166,7 +176,7 @@
             </div>
         </section>
 
-        <!-- Interactive Applications Suite with High-Res Imagery -->
+        <!-- Interactive Applications Suite -->
         <section id="projects" class="space-y-10">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-cyan-500/20 pb-5 gap-2">
                 <div>

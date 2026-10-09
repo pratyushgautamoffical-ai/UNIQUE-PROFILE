@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERVAULT | Premier Digital Game Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617; 
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Ambient Pulsing Glow Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.22;
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 12s infinite ease-in-out alternate;
+        }
+        .orb-1 { top: -10%; left: 10%; width: 550px; height: 550px; background: #10b981; }
+        .orb-2 { bottom: -10%; right: 10%; width: 600px; height: 600px; background: #8b5cf6; }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(-30px, 30px); }
+        }
+
+        /* Glassmorphism Panels */
+        .glass-panel { 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(16, 185, 129, 0.25); 
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card { 
+            background: rgba(30, 41, 59, 0.45); 
+            backdrop-filter: blur(14px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover { 
+            transform: translateY(-8px);
+            border-color: rgba(16, 185, 129, 0.5); 
+            box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.25); 
+        }
+
+        .emerald-gradient {
+            background: linear-gradient(135deg, #34d399, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .violet-gradient {
+            background: linear-gradient(135deg, #c084fc, #8b5cf6, #6d28d9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="selection:bg-emerald-500 selection:text-black min-h-screen flex flex-col justify-between">
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Announcement Bar -->
+    <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-purple-950 text-center py-2.5 px-4 border-b border-emerald-500/20 text-xs font-semibold text-slate-300">
+        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-shield-halved mr-1"></i> Verified Merchant:</span> Instant key generation powered by PostgreSQL live telemetry.
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="py-5 px-8 border-b border-emerald-500/20 glass-panel sticky top-0 z-50 flex justify-between items-center max-w-7xl mx-auto w-full">
+        <a href="index.html" class="text-xs font-semibold text-slate-400 hover:text-emerald-400 transition flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> Portfolio
+        </a>
+        
+        <h1 class="text-2xl font-heading font-extrabold tracking-wider text-white">
+            CYBER<span class="emerald-gradient">VAULT</span>
+        </h1>
+
+        <div class="glass-card px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-3 border border-emerald-500/40">
+            <i class="fa-solid fa-cart-shopping text-emerald-400 text-sm"></i>
+            <span>Cart: <strong id="cart-count" class="text-violet-400">0</strong> items (<strong id="cart-total" class="text-emerald-400">$0.00</strong>)</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-12 pb-6 px-6 text-center max-w-4xl mx-auto">
+        <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-heading font-bold border border-emerald-500/30 px-3.5 py-1.5 rounded-full bg-emerald-500/10">
+            <i class="fa-solid fa-bolt mr-1"></i> Next-Gen E-Commerce Suite
+        </span>
+        <h1 class="text-4xl md:text-6xl font-heading font-extrabold mt-4 mb-3 text-white">
+            DIGITAL <span class="emerald-gradient">GAME</span> <span class="violet-gradient">MARKETPLACE</span>
+        </h1>
+        <p class="text-slate-400 text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">
+            Browse high-demand titles, filter by category, manage dynamic cart item states, and place orders logged straight into your cloud database.
+        </p>
+
+        <!-- Search Bar & Filters -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto">
+            <div class="relative flex-grow">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-500 text-xs"></i>
+                <input type="text" id="search-input" onkeyup="filterGames()" placeholder="Search catalog by title..." class="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white outline-none focus:border-emerald-400 transition">
+            </div>
+            <select id="genre-select" onchange="filterGames()" class="bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-300 outline-none focus:border-violet-400 transition cursor-pointer">
+                <option value="all">All Categories</option>
+                <option value="RPG">RPG</option>
+                <option value="Action">Action</option>
+                <option value="Survival">Survival</option>
+                <option value="Strategy">Strategy</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
+
+        <!-- Catalog Grid -->
+        <div class="lg:col-span-8 space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="font-heading text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-fire text-emerald-400"></i> Featured Titles
+                </h2>
+                <span class="text-xs text-slate-500"><strong id="game-count">4</strong> Games Available</span>
+            </div>
+
+            <div id="games-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Game Card 1 -->
+                <div class="game-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-genre="RPG" data-title="cyber odyssey 2077">
+                    <div>
+                        <div class="h-44 bg-gradient-to-br from-emerald-950/80 to-slate-900 rounded-xl mb-4 border border-emerald-500/30 flex flex-col items-center justify-center text-emerald-400 gap-2 relative overflow-hidden">
+                            <i class="fa-solid fa-vr-cardboard text-5xl"></i>
+                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">Unreal Engine 5</span>
+                            <span class="absolute top-3 right-3 text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-md font-semibold">-15% OFF</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-md font-semibold uppercase">RPG / Sci-Fi</span>
+                            <span class="text-xs text-amber-400 font-bold"><i class="fa-solid fa-star mr-1"></i>4.9</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white mt-2">Cyber Odyssey 2077</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Sprawling cyberpunk metropolis featuring ray-traced visuals and deep story branches.</p>
+                        <div class="mt-3 flex items-center gap-3 text-[11px] text-slate-400">
+                            <span><i class="fa-solid fa-microchip text-emerald-400 mr-1"></i> PC / Console</span>
+                            <span><i class="fa-solid fa-check text-emerald-400 mr-1"></i> In Stock</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-800/80">
+                        <div>
+                            <span class="text-xs text-slate-500 line-through">$69.99</span>
+                            <span class="text-xl font-heading font-bold text-emerald-400 block">$59.99</span>
+                        </div>
+                        <button onclick="addToCart('Cyber Odyssey 2077', 59.99)" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
+                            <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Card 2 -->
+                <div class="game-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-genre="Action" data-title="elden realm">
+                    <div>
+                        <div class="h-44 bg-gradient-to-br from-purple-950/80 to-slate-900 rounded-xl mb-4 border border-purple-500/30 flex flex-col items-center justify-center text-purple-400 gap-2 relative overflow-hidden">
+                            <i class="fa-solid fa-shield-halved text-5xl"></i>
+                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">GOTY Edition</span>
+                            <span class="absolute top-3 right-3 text-[10px] bg-purple-500/20 text-purple-300 border border-purple-500/40 px-2 py-0.5 rounded-md font-semibold">-20% OFF</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[10px] bg-purple-500/20 text-purple-300 border border-purple-500/40 px-2.5 py-0.5 rounded-md font-semibold uppercase">Action / Fantasy</span>
+                            <span class="text-xs text-amber-400 font-bold"><i class="fa-solid fa-star mr-1"></i>4.8</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white mt-2">Elden Realm</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Punishing open-world dark fantasy action RPG featuring epic boss encounters.</p>
+                        <div class="mt-3 flex items-center gap-3 text-[11px] text-slate-400">
+                            <span><i class="fa-solid fa-gamepad text-purple-400 mr-1"></i> Multiplayer</span>
+                            <span><i class="fa-solid fa-check text-purple-400 mr-1"></i> Digital Key</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-800/80">
+                        <div>
+                            <span class="text-xs text-slate-500 line-through">$59.99</span>
+                            <span class="text-xl font-heading font-bold text-violet-400 block">$49.99</span>
+                        </div>
+                        <button onclick="addToCart('Elden Realm', 49.99)" class="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-400 hover:to-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-lg shadow-purple-500/20">
+                            <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Card 3 -->
+                <div class="game-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-genre="Survival" data-title="pixel survival z">
+                    <div>
+                        <div class="h-44 bg-gradient-to-br from-teal-950/80 to-slate-900 rounded-xl mb-4 border border-teal-500/30 flex flex-col items-center justify-center text-teal-400 gap-2 relative overflow-hidden">
+                            <i class="fa-solid fa-cubes text-5xl"></i>
+                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">Co-Op Survival</span>
+                            <span class="absolute top-3 right-3 text-[10px] bg-teal-500/20 text-teal-300 border border-teal-500/40 px-2 py-0.5 rounded-md font-semibold">BEST VALUE</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[10px] bg-teal-500/20 text-teal-300 border border-teal-500/40 px-2.5 py-0.5 rounded-md font-semibold uppercase">Sandbox / Survival</span>
+                            <span class="text-xs text-amber-400 font-bold"><i class="fa-solid fa-star mr-1"></i>4.7</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white mt-2">Pixel Survival Z</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Co-op sandbox experience featuring procedural world generation and base defense.</p>
+                        <div class="mt-3 flex items-center gap-3 text-[11px] text-slate-400">
+                            <span><i class="fa-solid fa-users text-teal-400 mr-1"></i> 1-8 Players</span>
+                            <span><i class="fa-solid fa-check text-teal-400 mr-1"></i> Instant Key</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-800/80">
+                        <div>
+                            <span class="text-xs text-slate-500 line-through">$29.99</span>
+                            <span class="text-xl font-heading font-bold text-teal-400 block">$19.99</span>
+                        </div>
+                        <button onclick="addToCart('Pixel Survival Z', 19.99)" class="bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-lg shadow-teal-500/20">
+                            <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Card 4 -->
+                <div class="game-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-genre="Strategy" data-title="galactic command iv">
+                    <div>
+                        <div class="h-44 bg-gradient-to-br from-indigo-950/80 to-slate-900 rounded-xl mb-4 border border-indigo-500/30 flex flex-col items-center justify-center text-indigo-400 gap-2 relative overflow-hidden">
+                            <i class="fa-solid fa-chess-king text-5xl"></i>
+                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">Tactical Sim</span>
+                            <span class="absolute top-3 right-3 text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 px-2 py-0.5 rounded-md font-semibold">NEW RELEASE</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 px-2.5 py-0.5 rounded-md font-semibold uppercase">Strategy / 4X</span>
+                            <span class="text-xs text-amber-400 font-bold"><i class="fa-solid fa-star mr-1"></i>4.6</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white mt-2">Galactic Command IV</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Turn-based empire builder where players conquer stellar systems and build fleets.</p>
+                        <div class="mt-3 flex items-center gap-3 text-[11px] text-slate-400">
+                            <span><i class="fa-solid fa-globe text-indigo-400 mr-1"></i> Global Servers</span>
+                            <span><i class="fa-solid fa-check text-indigo-400 mr-1"></i> Steam Key</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-800/80">
+                        <div>
+                            <span class="text-xs text-slate-500 line-through">$49.99</span>
+                            <span class="text-xl font-heading font-bold text-indigo-400 block">$39.99</span>
+                        </div>
+                        <button onclick="addToCart('Galactic Command IV', 39.99)" class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-lg shadow-indigo-500/20">
+                            <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Checkout Sidebar -->
+        <div class="lg:col-span-4 glass-panel p-6 rounded-3xl h-fit sticky top-28">
+            <h3 class="font-heading font-bold text-md text-white mb-4 flex items-center justify-between border-b border-slate-800 pb-3">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-receipt text-emerald-400"></i> Active Cart</span>
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider">Live Sync</span>
+            </h3>
+
+            <!-- Dynamic Cart List -->
+            <div id="cart-items-list" class="space-y-2 mb-4 text-xs text-slate-400 min-h-[80px] max-h-[220px] overflow-y-auto pr-1">
+                <p class="text-slate-500 italic text-center py-6">Your shopping cart is currently empty.</p>
+            </div>
+
+            <!-- Total Price Calculation -->
+            <div class="flex justify-between items-center py-3 border-t border-slate-800 mb-4">
+                <span class="text-xs text-slate-400 font-semibold">Subtotal</span>
+                <span id="summary-total" class="font-heading text-lg font-bold text-emerald-400">$0.00</span>
+            </div>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Customer Email</label>
+                    <input type="email" id="checkout-email" required placeholder="gamer@domain.com" class="w-full bg-slate-900 border border-slate-800 p-3 rounded-xl text-xs outline-none text-white focus:border-emerald-400 transition">
+                </div>
+
+                <button onclick="processCheckout()" class="w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-purple-600 hover:opacity-90 text-slate-950 font-heading font-bold py-3.5 rounded-xl transition text-xs shadow-lg shadow-emerald-500/25">
+                    <i class="fa-solid fa-credit-card mr-2"></i> Place Order
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-xs text-slate-600 border-t border-slate-900 mt-12">
+        <p>© 2026 CYBERVAULT. Connected live to Supabase PostgreSQL Database.</p>
+    </footer>
+
+    <script>
+        const SUPABASE_URL = 'https://ytazsxtopyzelmjocilj.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_4ykTgPpiN9amejFPJpH7mw_bK7CaOi_';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let cart = [];
+
+        function addToCart(title, price) {
+            cart.push({ title, price });
+            renderCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        function renderCart() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cart-total').innerText = '$' + total.toFixed(2);
+            document.getElementById('summary-total').innerText = '$' + total.toFixed(2);
+
+            const list = document.getElementById('cart-items-list');
+            if (cart.length === 0) {
+                list.innerHTML = '<p class="text-slate-500 italic text-center py-6">Your shopping cart is currently empty.</p>';
+            } else {
+                list.innerHTML = cart.map((item, index) => `
+                    <div class="flex justify-between items-center bg-slate-900/90 p-2.5 rounded-xl border border-slate-800/80">
+                        <div>
+                            <p class="text-slate-200 font-bold text-xs">${item.title}</p>
+                            <span class="text-emerald-400 font-semibold">$${item.price}</span>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-slate-500 hover:text-rose-400 p-1 transition">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function filterGames() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const genre = document.getElementById('genre-select').value;
+            const items = document.querySelectorAll('.game-item');
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const titleMatches = item.dataset.title.includes(query);
+                const genreMatches = genre === 'all' || item.dataset.genre === genre;
+
+                if (titleMatches && genreMatches) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            document.getElementById('game-count').innerText = visibleCount;
+        }
+
+        async function processCheckout() {
+            const email = document.getElementById('checkout-email').value;
+            if (!email || cart.length === 0) {
+                alert('Please enter your email and add at least one game to your cart.');
+                return;
+            }
+
+            const titles = cart.map(i => i.title);
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+            const { error } = await _supabase.from('orders').insert([
+                { customer_email: email, game_titles: titles, total_price: total }
+            ]);
+
+            if (error) {
+                alert('Checkout error: ' + error.message);
+            } else {
+                alert('🚀 Order placed! Details saved live into Supabase.');
+                cart = [];
+                renderCart();
+                document.getElementById('checkout-email').value = '';
+            }
+        }
+    </script>
+</body>
+</html>

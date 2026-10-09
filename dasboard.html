@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER-NEXUS | Enterprise Analytics Telemetry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #030308; 
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+        
+        .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.22;
+            z-index: -1;
+            pointer-events: none;
+            animation: floatGlow 14s infinite ease-in-out alternate;
+        }
+        .orb-1 { top: -10%; right: 10%; width: 600px; height: 600px; background: #c084fc; }
+        .orb-2 { bottom: -10%; left: 10%; width: 600px; height: 600px; background: #06b6d4; }
+
+        @keyframes floatGlow {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(-30px, 30px); }
+        }
+
+        .glass-panel { 
+            background: rgba(12, 16, 32, 0.85); 
+            backdrop-filter: blur(24px); 
+            border: 1px solid rgba(192, 132, 252, 0.2); 
+            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card { 
+            background: rgba(20, 27, 48, 0.5); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .purple-gradient {
+            background: linear-gradient(135deg, #e9d5ff, #c084fc, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="selection:bg-purple-500 selection:text-black min-h-screen flex flex-col justify-between">
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Live Status Top Bar -->
+    <div class="bg-gradient-to-r from-purple-950 via-slate-950 to-cyan-950 text-center py-2 border-b border-purple-500/20 text-xs font-semibold text-slate-300 flex justify-between items-center px-8">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-emerald-400 font-bold uppercase tracking-wider text-[10px]">Cloud Connection: Active</span>
+        </div>
+        <p class="hidden md:block text-[11px] text-slate-400">PostgreSQL Live Telemetry Engine • Powered by Supabase</p>
+        <span class="text-[10px] text-purple-400 font-mono" id="live-time">SYNCING...</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="py-5 px-8 border-b border-purple-500/20 glass-panel sticky top-0 z-50 flex justify-between items-center max-w-7xl mx-auto w-full mt-2 rounded-2xl">
+        <a href="index.html" class="text-xs font-semibold text-slate-400 hover:text-purple-400 transition flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> Portfolio Home
+        </a>
+        
+        <h1 class="text-2xl font-heading font-extrabold tracking-wider text-white">
+            NEXUS<span class="purple-gradient">.TELEMETRY</span>
+        </h1>
+
+        <button onclick="loadDashboardData()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-lg shadow-purple-500/20 flex items-center gap-2">
+            <i class="fa-solid fa-rotate" id="sync-icon"></i> Refresh Database
+        </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-6 py-8 w-full space-y-8">
+
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-purple-400 font-bold font-heading">Real-Time Enterprise Overview</span>
+                <h2 class="text-3xl font-heading font-extrabold text-white mt-1">Global Command Dashboard</h2>
+            </div>
+            <span class="text-xs bg-slate-900 border border-slate-800 text-slate-400 px-3 py-1.5 rounded-xl flex items-center gap-2">
+                <i class="fa-solid fa-database text-purple-400"></i> Database: <strong class="text-white">PostgreSQL</strong>
+            </span>
+        </div>
+
+        <!-- Metric KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-l-4 border-purple-500">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Gross Sales</span>
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h3 id="stat-sales" class="text-2xl font-heading font-extrabold text-white">$0.00</h3>
+                    <p class="text-[11px] text-emerald-400 mt-1"><i class="fa-solid fa-arrow-trend-up mr-1"></i> Live sum</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-l-4 border-emerald-500">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Marketplace Orders</span>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h3 id="stat-orders-count" class="text-2xl font-heading font-extrabold text-white">0</h3>
+                    <p class="text-[11px] text-slate-400 mt-1">CYBERVAULT items</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-l-4 border-amber-500">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Hotel Bookings</span>
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h3 id="stat-bookings-count" class="text-2xl font-heading font-extrabold text-white">0</h3>
+                    <p class="text-[11px] text-slate-400 mt-1">AURA Resort stays</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-l-4 border-cyan-500">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Total Guests</span>
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-lg">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h3 id="stat-guests-count" class="text-2xl font-heading font-extrabold text-white">0</h3>
+                    <p class="text-[11px] text-slate-400 mt-1">Hotel guests booked</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-Time Data Grids -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- E-Commerce Orders Table -->
+            <div class="glass-panel p-6 rounded-3xl space-y-4">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                    <div>
+                        <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                            <i class="fa-solid fa-bag-shopping text-emerald-400"></i> E-Commerce Orders
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-0.5">Live records from `orders` table</p>
+                    </div>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full font-semibold">PostgreSQL</span>
+                </div>
+
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
+                    <input type="text" id="order-search" onkeyup="filterOrders()" placeholder="Search by customer email..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white outline-none focus:border-emerald-400 transition">
+                </div>
+
+                <div id="orders-list" class="space-y-3 text-xs text-slate-300 min-h-[180px] max-h-[380px] overflow-y-auto pr-1">
+                    <p class="text-slate-500 italic py-8 text-center">Querying database engine...</p>
+                </div>
+            </div>
+
+            <!-- Hotel Bookings Table -->
+            <div class="glass-panel p-6 rounded-3xl space-y-4">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                    <div>
+                        <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                            <i class="fa-solid fa-hotel text-amber-400"></i> Hotel Bookings
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-0.5">Live records from `bookings` table</p>
+                    </div>
+                    <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full font-semibold">PostgreSQL</span>
+                </div>
+
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
+                    <input type="text" id="booking-search" onkeyup="filterBookings()" placeholder="Search by guest name..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white outline-none focus:border-amber-400 transition">
+                </div>
+
+                <div id="bookings-list" class="space-y-3 text-xs text-slate-300 min-h-[180px] max-h-[380px] overflow-y-auto pr-1">
+                    <p class="text-slate-500 italic py-8 text-center">Querying database engine...</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-xs text-slate-600 border-t border-slate-900/80 mt-12">
+        <p>© 2026 NEXUS TELEMETRY. Directly connected to Supabase PostgreSQL Database.</p>
+    </footer>
+
+    <script>
+        const SUPABASE_URL = 'https://ytazsxtopyzelmjocilj.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_4ykTgPpiN9amejFPJpH7mw_bK7CaOi_';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let cachedOrders = [];
+        let cachedBookings = [];
+
+        function updateClock() {
+            document.getElementById('live-time').innerText = new Date().toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        async function loadDashboardData() {
+            const syncIcon = document.getElementById('sync-icon');
+            syncIcon.classList.add('fa-spin');
+
+            const { data: orderData } = await _supabase.from('orders').select('*').order('created_at', { ascending: false });
+            const { data: bookingData } = await _supabase.from('bookings').select('*').order('created_at', { ascending: false });
+
+            syncIcon.classList.remove('fa-spin');
+
+            if (orderData && orderData.length > 0) {
+                cachedOrders = orderData;
+                document.getElementById('stat-orders-count').innerText = orderData.length;
+                const totalRevenue = orderData.reduce((sum, o) => sum + parseFloat(o.total_price || 0), 0);
+                document.getElementById('stat-sales').innerText = '$' + totalRevenue.toFixed(2);
+                renderOrders(orderData);
+            } else {
+                document.getElementById('orders-list').innerHTML = '<p class="text-slate-500 italic text-center py-8">No orders placed in database yet.</p>';
+            }
+
+            if (bookingData && bookingData.length > 0) {
+                cachedBookings = bookingData;
+                document.getElementById('stat-bookings-count').innerText = bookingData.length;
+                const totalGuests = bookingData.reduce((sum, b) => sum + parseInt(b.guests || 0), 0);
+                document.getElementById('stat-guests-count').innerText = totalGuests;
+                renderBookings(bookingData);
+            } else {
+                document.getElementById('bookings-list').innerHTML = '<p class="text-slate-500 italic text-center py-8">No hotel bookings logged yet.</p>';
+            }
+        }
+
+        function renderOrders(data) {
+            const list = document.getElementById('orders-list');
+            list.innerHTML = data.map(o => `
+                <div class="p-3.5 bg-slate-900/90 rounded-xl border border-slate-800/80 flex justify-between items-center hover:border-emerald-500/40 transition">
+                    <div>
+                        <p class="font-bold text-slate-200">${o.customer_email}</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5"><i class="fa-solid fa-gamepad mr-1 text-emerald-400"></i> ${Array.isArray(o.game_titles) ? o.game_titles.join(', ') : o.game_titles}</p>
+                    </div>
+                    <span class="font-heading font-bold text-emerald-400 text-sm">$${o.total_price}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderBookings(data) {
+            const list = document.getElementById('bookings-list');
+            list.innerHTML = data.map(b => `
+                <div class="p-3.5 bg-slate-900/90 rounded-xl border border-slate-800/80 flex justify-between items-center hover:border-amber-500/40 transition">
+                    <div>
+                        <p class="font-bold text-amber-300">${b.guest_name} <span class="text-xs text-slate-400">(${b.guests} guests)</span></p>
+                        <p class="text-[10px] text-slate-400 mt-0.5"><i class="fa-solid fa-hotel mr-1 text-amber-400"></i> ${b.room_type} | ${b.check_in} to ${b.check_out}</p>
+                    </div>
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md border border-slate-700">${b.email}</span>
+                </div>
+            `).join('');
+        }
+
+        function filterOrders() {
+            const query = document.getElementById('order-search').value.toLowerCase();
+            const filtered = cachedOrders.filter(o => o.customer_email.toLowerCase().includes(query));
+            renderOrders(filtered);
+        }
+
+        function filterBookings() {
+            const query = document.getElementById('booking-search').value.toLowerCase();
+            const filtered = cachedBookings.filter(b => b.guest_name.toLowerCase().includes(query));
+            renderBookings(filtered);
+        }
+
+        window.onload = loadDashboardData;
+    </script>
+</body>
+</html>

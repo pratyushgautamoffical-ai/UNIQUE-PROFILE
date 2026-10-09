@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratyush Gautam | Senior Full-Stack Developer</title>
+    <title>Pratyush Gautam | Senior Full-Stack Cloud Architect & Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -19,43 +19,44 @@
         
         .font-heading { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Ambient Pulsing Background Orbs */
+        /* Multi-Layered Glowing Ambient Orbs */
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.22;
+            filter: blur(160px);
+            opacity: 0.18;
             z-index: -1;
             pointer-events: none;
-            animation: floatGlow 14s infinite ease-in-out alternate;
+            animation: floatGlow 16s infinite ease-in-out alternate;
         }
-        .orb-1 { top: -10%; left: 15%; width: 550px; height: 550px; background: #38bdf8; }
-        .orb-2 { bottom: -10%; right: 10%; width: 600px; height: 600px; background: #c084fc; }
+        .orb-1 { top: -5%; left: 10%; width: 650px; height: 650px; background: #38bdf8; }
+        .orb-2 { top: 35%; right: -5%; width: 700px; height: 700px; background: #c084fc; }
+        .orb-3 { bottom: -10%; left: 25%; width: 600px; height: 600px; background: #10b981; opacity: 0.1; }
 
         @keyframes floatGlow {
             0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.15) translate(-30px, 30px); }
+            100% { transform: scale(1.18) translate(-40px, 40px); }
         }
 
-        /* Glassmorphic Cards & Panels */
+        /* Glassmorphic Panels and Cards */
         .glass-panel { 
             background: rgba(12, 16, 32, 0.85); 
             backdrop-filter: blur(24px); 
             border: 1px solid rgba(255, 255, 255, 0.08); 
-            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 16px 50px -12px rgba(0, 0, 0, 0.7);
         }
 
         .glass-card { 
-            background: rgba(20, 27, 48, 0.5); 
+            background: rgba(20, 27, 48, 0.55); 
             backdrop-filter: blur(16px); 
             border: 1px solid rgba(255, 255, 255, 0.08); 
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover { 
             transform: translateY(-8px);
             border-color: rgba(56, 189, 248, 0.4); 
-            box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.25); 
+            box-shadow: 0 24px 45px -15px rgba(56, 189, 248, 0.28); 
         }
 
         .cyan-gradient {
@@ -69,6 +70,7 @@
 
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
     <!-- Navigation Header -->
     <header class="py-5 px-8 border-b border-slate-800 glass-panel sticky top-0 z-50 flex justify-between items-center max-w-7xl mx-auto w-full mt-2 rounded-2xl">
@@ -77,42 +79,76 @@
         </a>
 
         <nav class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
-            <a href="#projects" class="hover:text-sky-400 transition">Interactive Apps</a>
-            <a href="#stack" class="hover:text-sky-400 transition">Tech Stack</a>
+            <a href="#about" class="hover:text-sky-400 transition">About</a>
+            <a href="#projects" class="hover:text-sky-400 transition">Applications</a>
+            <a href="#architecture" class="hover:text-sky-400 transition">Architecture</a>
             <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
         </nav>
 
         <a href="#contact" class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition shadow-lg shadow-sky-500/20">
-            Start a Project
+            Initialize Contact
         </a>
     </header>
 
-    <!-- Hero Section -->
-    <main class="max-w-7xl mx-auto px-6 py-12 w-full space-y-16">
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-12 w-full space-y-24">
         
-        <div class="text-center max-w-3xl mx-auto space-y-4">
-            <span class="text-xs uppercase tracking-widest text-sky-400 font-bold border border-sky-500/30 px-3.5 py-1.5 rounded-full bg-sky-500/10">
-                <i class="fa-solid fa-bolt mr-1"></i> Full-Stack Cloud Architecture
+        <!-- Hero Section -->
+        <section class="text-center max-w-4xl mx-auto space-y-6 pt-6">
+            <span class="text-xs uppercase tracking-widest text-sky-400 font-bold border border-sky-500/30 px-4 py-1.5 rounded-full bg-sky-500/10 inline-flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span> Full-Stack Cloud & Database Architecture
             </span>
-            <h1 class="text-4xl md:text-6xl font-heading font-extrabold text-white leading-tight">
-                Engineering <span class="cyan-gradient">High-Performance</span> Web Applications
+            <h1 class="text-4xl md:text-7xl font-heading font-extrabold text-white leading-tight">
+                Architecting <span class="cyan-gradient">Next-Gen</span> Distributed Web Ecosystems
             </h1>
-            <p class="text-slate-400 text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
-                Full-stack developer specializing in modern glassmorphic UIs, real-time database state management, and custom cloud integrations.
+            <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                Senior full-stack engineer and software architect specializing in reactive frontend state synchronization, serverless SQL database operations, and high-performance glassmorphic UI engineering.
             </p>
-        </div>
+            <div class="flex justify-center gap-4 pt-2">
+                <a href="#projects" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-sky-500/25">
+                    Explore App Suite <i class="fa-solid fa-arrow-down ml-2"></i>
+                </a>
+                <a href="#architecture" class="glass-card text-white hover:border-sky-400 px-6 py-3 rounded-xl text-xs font-bold transition">
+                    View System Specs
+                </a>
+            </div>
+        </section>
 
-        <!-- Featured Interactive App Cards -->
-        <section id="projects" class="space-y-6">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+        <!-- Executive Summary & Stats Grid -->
+        <section id="about" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-3xl border-l-4 border-sky-500">
+                <span class="text-xs text-slate-400 uppercase font-semibold">Core Focus</span>
+                <h3 class="text-xl font-heading font-extrabold text-white mt-1">Full-Stack Cloud</h3>
+                <p class="text-[11px] text-slate-400 mt-1">End-to-end scalable web applications</p>
+            </div>
+            <div class="glass-card p-6 rounded-3xl border-l-4 border-emerald-500">
+                <span class="text-xs text-slate-400 uppercase font-semibold">Database Engine</span>
+                <h3 class="text-xl font-heading font-extrabold text-white mt-1">PostgreSQL + RLS</h3>
+                <p class="text-[11px] text-slate-400 mt-1">Secure row-level security & triggers</p>
+            </div>
+            <div class="glass-card p-6 rounded-3xl border-l-4 border-amber-500">
+                <span class="text-xs text-slate-400 uppercase font-semibold">Deployment</span>
+                <h3 class="text-xl font-heading font-extrabold text-white mt-1">Vercel Edge</h3>
+                <p class="text-[11px] text-slate-400 mt-1">Global serverless edge routing</p>
+            </div>
+            <div class="glass-card p-6 rounded-3xl border-l-4 border-purple-500">
+                <span class="text-xs text-slate-400 uppercase font-semibold">Interface UI</span>
+                <h3 class="text-xl font-heading font-extrabold text-white mt-1">Glassmorphic</h3>
+                <p class="text-[11px] text-slate-400 mt-1">Immersive cyberpunk & neon design</p>
+            </div>
+        </section>
+
+        <!-- Interactive Applications Suite Section -->
+        <section id="projects" class="space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-slate-800 pb-4 gap-2">
                 <div>
-                    <h2 class="text-2xl font-heading font-extrabold text-white flex items-center gap-2">
+                    <h2 class="text-2xl md:text-3xl font-heading font-extrabold text-white flex items-center gap-3">
                         <i class="fa-solid fa-rocket text-sky-400"></i> Interactive Application Suite
                     </h2>
-                    <p class="text-xs text-slate-400 mt-0.5">Live web apps connected directly to Supabase PostgreSQL database</p>
+                    <p class="text-xs text-slate-400 mt-1">Fully functional client applications connected in real-time to Supabase PostgreSQL</p>
                 </div>
-                <span class="text-xs text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
-                    <i class="fa-solid fa-check-circle mr-1"></i> Live Production
+                <span class="text-xs text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1.5 rounded-xl flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> All Systems Online
                 </span>
             </div>
 
@@ -121,90 +157,166 @@
                 <!-- App 1: Hotel Booking -->
                 <a href="hotel.html" class="glass-card p-6 rounded-3xl block flex flex-col justify-between group border-amber-500/20">
                     <div>
-                        <div class="h-44 bg-gradient-to-br from-amber-950/60 to-slate-900 rounded-2xl mb-4 border border-amber-500/30 flex flex-col items-center justify-center text-amber-400 gap-2 relative overflow-hidden">
-                            <i class="fa-solid fa-hotel text-5xl transform group-hover:scale-110 transition duration-300"></i>
-                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">5-Star Suite Booking</span>
+                        <div class="h-48 bg-gradient-to-br from-amber-950/60 to-slate-900 rounded-2xl mb-5 border border-amber-500/30 flex flex-col items-center justify-center text-amber-400 gap-2 relative overflow-hidden">
+                            <i class="fa-solid fa-hotel text-6xl transform group-hover:scale-110 transition duration-300"></i>
+                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">Hospitality Booking Engine</span>
                         </div>
-                        <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2.5 py-0.5 rounded-md font-semibold uppercase">Hospitality System</span>
-                        <h3 class="text-xl font-heading font-bold text-white mt-2">AURA Luxury Hotel</h3>
-                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Resort room booking platform logging guest details, dates, and suites straight into PostgreSQL.</p>
+                        <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">AURA Hospitality</span>
+                        <h3 class="text-xl font-heading font-bold text-white mt-3">Luxury Hotel Suite System</h3>
+                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+                            Sophisticated resort reservation platform handling guest information, date validation, suite tiers, and real-time database logging into PostgreSQL.
+                        </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-amber-400">
-                        <span>Launch App</span>
-                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                        <span>Launch Hospitality App</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1.5 transition"></i>
                     </div>
                 </a>
 
                 <!-- App 2: E-Commerce Store -->
                 <a href="market.html" class="glass-card p-6 rounded-3xl block flex flex-col justify-between group border-emerald-500/20">
                     <div>
-                        <div class="h-44 bg-gradient-to-br from-emerald-950/60 to-slate-900 rounded-2xl mb-4 border border-emerald-500/30 flex flex-col items-center justify-center text-emerald-400 gap-2 relative overflow-hidden">
-                            <i class="fa-solid fa-bag-shopping text-5xl transform group-hover:scale-110 transition duration-300"></i>
-                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">Live Cart Checkout</span>
+                        <div class="h-48 bg-gradient-to-br from-emerald-950/60 to-slate-900 rounded-2xl mb-5 border border-emerald-500/30 flex flex-col items-center justify-center text-emerald-400 gap-2 relative overflow-hidden">
+                            <i class="fa-solid fa-bag-shopping text-6xl transform group-hover:scale-110 transition duration-300"></i>
+                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">Digital Marketplace</span>
                         </div>
-                        <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-md font-semibold uppercase">Digital E-Commerce</span>
-                        <h3 class="text-xl font-heading font-bold text-white mt-2">CYBERVAULT Store</h3>
-                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Digital marketplace featuring category filtering, live shopping cart state management, and order logs.</p>
+                        <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">CYBERVAULT Store</span>
+                        <h3 class="text-xl font-heading font-bold text-white mt-3">High-End Digital Storefront</h3>
+                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+                            Feature-rich digital game marketplace equipped with dynamic shopping cart state management, real-time total calculation, and secure database checkout logs.
+                        </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-emerald-400">
-                        <span>Launch Store</span>
-                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                        <span>Launch Marketplace</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1.5 transition"></i>
                     </div>
                 </a>
 
                 <!-- App 3: Telemetry Dashboard -->
                 <a href="dashboard.html" class="glass-card p-6 rounded-3xl block flex flex-col justify-between group border-purple-500/20">
                     <div>
-                        <div class="h-44 bg-gradient-to-br from-purple-950/60 to-slate-900 rounded-2xl mb-4 border border-purple-500/30 flex flex-col items-center justify-center text-purple-400 gap-2 relative overflow-hidden">
-                            <i class="fa-solid fa-chart-line text-5xl transform group-hover:scale-110 transition duration-300"></i>
-                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">PostgreSQL Reader</span>
+                        <div class="h-48 bg-gradient-to-br from-purple-950/60 to-slate-900 rounded-2xl mb-5 border border-purple-500/30 flex flex-col items-center justify-center text-purple-400 gap-2 relative overflow-hidden">
+                            <i class="fa-solid fa-chart-line text-6xl transform group-hover:scale-110 transition duration-300"></i>
+                            <span class="text-[10px] font-heading tracking-widest text-slate-400 uppercase">Enterprise Telemetry</span>
                         </div>
-                        <span class="text-[10px] bg-purple-500/20 text-purple-300 border border-purple-500/40 px-2.5 py-0.5 rounded-md font-semibold uppercase">Analytics Telemetry</span>
-                        <h3 class="text-xl font-heading font-bold text-white mt-2">NEXUS Control Center</h3>
-                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Enterprise dashboard displaying incoming marketplace transactions and hotel bookings in real time.</p>
+                        <span class="text-[10px] bg-purple-500/20 text-purple-300 border border-purple-500/40 px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">NEXUS Control Center</span>
+                        <h3 class="text-xl font-heading font-bold text-white mt-3">Global Analytics Command</h3>
+                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
+                            Centralized administrative control center featuring live database polling, KPI sales metrics, active table search filters, and instant telemetry sync.
+                        </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-purple-400">
-                        <span>Open Dashboard</span>
-                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                        <span>Open Command Center</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1.5 transition"></i>
                     </div>
                 </a>
 
             </div>
         </section>
 
+        <!-- Technical Architecture & Stack Matrix -->
+        <section id="architecture" class="space-y-8">
+            <div class="border-b border-slate-800 pb-4">
+                <h2 class="text-2xl font-heading font-extrabold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-layer-group text-indigo-400"></i> Technical Architecture & Stack Matrix
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">Comprehensive breakdown of technologies utilized across the ecosystem</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stack 1 -->
+                <div class="glass-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-lg">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-white text-base">Frontend Engineering</h3>
+                    <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                        <li>HTML5 & Modern CSS3</li>
+                        <li>Tailwind CSS Utility-First Framework</li>
+                        <li>Vanilla ES6+ Asynchronous JavaScript</li>
+                        <li>FontAwesome 6.4 Iconography</li>
+                    </ul>
+                </div>
+
+                <!-- Stack 2 -->
+                <div class="glass-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-white text-base">Database & Backend</h3>
+                    <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                        <li>Supabase PostgreSQL Relational DB</li>
+                        <li>Row-Level Security (RLS) Policies</li>
+                        <li>RESTful API Client Integration</li>
+                        <li>Real-Time State Polling & Caching</li>
+                    </ul>
+                </div>
+
+                <!-- Stack 3 -->
+                <div class="glass-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-white text-base">Cloud & Deployment</h3>
+                    <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                        <li>Vercel Edge Global CI/CD Hosting</li>
+                        <li>Git Version Control & Branching</li>
+                        <li>Automated Continuous Deployment</li>
+                        <li>Low-Latency Cloud CDN Routing</li>
+                    </ul>
+                </div>
+
+                <!-- Stack 4 -->
+                <div class="glass-card p-6 rounded-3xl space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-white text-base">Security & Performance</h3>
+                    <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                        <li>Anonymous Tokenized Auth Access</li>
+                        <li>Input Sanitization & Validation</li>
+                        <li>Optimized Glassmorphic Backdrop Filters</li>
+                        <li>Responsive Mobile-First Viewports</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
-        <section id="contact" class="max-w-xl mx-auto glass-panel p-8 md:p-10 rounded-3xl space-y-6">
+        <section id="contact" class="max-w-xl mx-auto glass-panel p-8 md:p-12 rounded-3xl space-y-6">
             <div class="text-center border-b border-slate-800 pb-4">
-                <h3 class="font-heading font-extrabold text-2xl text-white">Send a Message</h3>
-                <p class="text-xs text-slate-400 mt-1">Inquiries submit directly to my Supabase `messages` database table</p>
+                <h3 class="font-heading font-extrabold text-2xl text-white">Initialize Communication</h3>
+                <p class="text-xs text-slate-400 mt-1">Inquiries route directly into the Supabase `messages` database table</p>
             </div>
             
             <form onsubmit="sendPortfolioMessage(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">Your Name</label>
-                    <input type="text" id="contact-name" required placeholder="Alex Mercer" class="w-full bg-slate-900 border border-slate-800 p-3 rounded-xl text-xs text-white outline-none focus:border-sky-400 transition">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name</label>
+                    <input type="text" id="contact-name" required placeholder="Alex Mercer" class="w-full bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs text-white outline-none focus:border-sky-400 transition">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">Your Email</label>
-                    <input type="email" id="contact-email" required placeholder="alex@domain.com" class="w-full bg-slate-900 border border-slate-800 p-3 rounded-xl text-xs text-white outline-none focus:border-sky-400 transition">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Professional Email</label>
+                    <input type="email" id="contact-email" required placeholder="alex@domain.com" class="w-full bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs text-white outline-none focus:border-sky-400 transition">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">Project Details</label>
-                    <textarea id="contact-message" required rows="3" placeholder="Tell me about your web application or project requirements..." class="w-full bg-slate-900 border border-slate-800 p-3 rounded-xl text-xs text-white outline-none focus:border-sky-400 transition"></textarea>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Project Scope & Specifications</label>
+                    <textarea id="contact-message" required rows="4" placeholder="Detail your cloud infrastructure, web application, or custom database integration requirements..." class="w-full bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs text-white outline-none focus:border-sky-400 transition"></textarea>
                 </div>
                 
                 <button type="submit" class="w-full bg-gradient-to-r from-sky-500 to-indigo-600 hover:opacity-90 text-white font-bold py-3.5 rounded-xl text-xs transition shadow-lg shadow-sky-500/20">
-                    <i class="fa-solid fa-paper-plane mr-2"></i> Submit Inquiry to Database
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Transmit Inquiry to Database
                 </button>
             </form>
         </section>
 
     </main>
 
-    <footer class="py-6 text-center text-xs text-slate-600 border-t border-slate-900 mt-12">
-        <p>© 2026 Pratyush Gautam. Deployed on Vercel & Powered by Supabase PostgreSQL.</p>
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-slate-600 border-t border-slate-900 mt-16 space-y-2">
+        <p>© 2026 Pratyush Gautam. Senior Full-Stack Cloud Architect.</p>
+        <p class="text-slate-700">All applications hosted on Vercel and synchronized with Supabase PostgreSQL.</p>
     </footer>
 
     <script>
@@ -223,9 +335,9 @@
             ]);
 
             if (error) {
-                alert('Error submitting message: ' + error.message);
+                alert('Database Error: ' + error.message);
             } else {
-                alert('🚀 Success! Message logged directly into Supabase database.');
+                alert('🚀 Success! Transmission received and stored in Supabase PostgreSQL messages table.');
                 e.target.reset();
             }
         }
